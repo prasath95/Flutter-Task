@@ -8,16 +8,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   
-  String lati="", longi="";
+  String _locationMessage="";
+  String lati="",longi="";
 
   void _getCurrentLocation() async {
     
    final position = await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);  
 
-      print(lati);
-      print(longi);
-
+      print(_locationMessage);
     setState(() {
+    //  _locationMessage = "${position.latitude}, ${position.longitude}";
       lati = "Latitude is" + position.latitude.toString();
       longi = "Longitude is" + position.longitude.toString();
     });
@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Welcome To Home'),
+          child: Text('Wellcome To Home'),
         ),
       ),
       body: Container(
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
                   _getCurrentLocation();
                 },
               ),
-              Text(" $lati" + "\n" + "$longi"),
+              Text(lati+"\n"+longi),
 
             ],
           ),
